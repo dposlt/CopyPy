@@ -12,8 +12,5 @@ def loadSource():
 def loadTarget():
     return parser['TARGET']['path']
 
-source, target = loadSource(), loadTarget()
-print(source)
-print(target)
 
 
