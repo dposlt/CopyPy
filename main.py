@@ -20,7 +20,7 @@ def copy():
                 os.mkdir(target+f)
                 newtarget = target+f
 
-                shutil.copytree(f,newtarget)
+                shutil.copytree(f,newtarget,symlinks=False, ignore=None, dirs_exist_ok=True)
                 if showFiles.ifFolderExists(f):
                     print('{green}{folder}{reset} is copied'.format(folder = f, green = Fore.GREEN, reset = Style.RESET_ALL))
         else:
