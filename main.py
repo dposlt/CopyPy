@@ -2,7 +2,7 @@
 
 ## head method ##
 
-import ini, showFiles, shutil
+import ini, showFiles, shutil, os
 from colorama import Fore, Style, init
 init(autoreset=True)
 
@@ -16,11 +16,16 @@ def copy():
             for f in showFiles.showDir(source):
                 print('copy folder {folder}'.format(folder = Style.BRIGHT + Fore.RED + f))
                 showFiles.changeDir(source)
-                #shutil.copytree(f,target,symlinks=False)
+                print('create folder {folder} to target'.format(folder = f))
+                os.mkdir(target+f)
+                newtarget = target+f
+
+                shutil.copytree(f,newtarget)
                 if showFiles.ifFolderExists(f):
-                    print('{folder} is copied'.format(folder = Style.BRIGHT + Fore.Red + f))
+                    print('{green}{folder}{reset} is copied'.format(folder = f, green = Fore.GREEN, reset = Style.RESET_ALL))
         else:
             print('target is not empty')
+            print(showFiles.showDir(target))
 
 
     else:
