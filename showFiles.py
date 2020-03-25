@@ -17,8 +17,8 @@ def isEmpty(dirname):
         return True
 
 
-def ifFolderExists(dirname):
-    if os.path.exists(dirname):
+def ifFolderExists(pathname, dirname):
+    if os.path.exists(pathname + dirname):
         return True
 
 def isFilesExists(dirname,filename):
