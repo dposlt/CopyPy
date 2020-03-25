@@ -8,28 +8,17 @@ init(autoreset=True)
 
 def copy():
     source, target = ini.loadSource(), ini.loadTarget()
-
-    if showFiles.isFull(source):
-        if showFiles.isEmpty(target):
-            print('start copy folders...')
-            ## folder for folder ##
-            for f in showFiles.showDir(source):
-                print('copy folder {folder}'.format(folder = Style.BRIGHT + Fore.RED + f))
-                showFiles.changeDir(source)
-                print('create folder {folder} to target'.format(folder = f))
-                os.mkdir(target+f)
-                newtarget = target+f
-
-                shutil.copytree(f,newtarget,symlinks=False, ignore=None, dirs_exist_ok=True)
-                if showFiles.ifFolderExists(f):
-                    print('{green}{folder}{reset} is copied'.format(folder = f, green = Fore.GREEN, reset = Style.RESET_ALL))
-        else:
-            print('target is not empty')
-            print(showFiles.showDir(target))
+    
+  
+    root, subdirs, files = showFiles.showDir(source)
+    
+    for __files__ in files:
+        if showFiles.isFilesExists(target,__files__) != True:
+            print('copy file {color}{file}'.format(file = __files__, color = Fore.GREEN))
+            shutil.copy(__files__, target)
+            print('file {color}{file} is done!'.format(file = __files__, color = Fore.RED))
 
 
-    else:
-        print('source or target is empty')
 
 if __name__ == '__main__':
     copy()

@@ -5,7 +5,8 @@ def changeDir(dirname):
 
 
 def showDir(dirname):
-    return os.listdir(dirname)
+    for root, subdirs, files in os.walk(dirname):
+        return root,subdirs,files
 
 
 def isFull(dirname):
@@ -18,4 +19,8 @@ def isEmpty(dirname):
 
 def ifFolderExists(dirname):
     if os.path.exists(dirname):
+        return True
+
+def isFilesExists(dirname,filename):
+    if os.path.exists(dirname + filename):
         return True
